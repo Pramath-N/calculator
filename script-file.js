@@ -114,7 +114,7 @@ eq.addEventListener("click", ()=>{
                     res = (+num1) % (+num2)
                     break;
                 default:
-                    res = "Enter a valid op[erator";
+                    res = "Enter a valid operator";
             }
             dis.textContent = res;
             flag = true;
