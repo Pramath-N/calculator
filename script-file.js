@@ -6,7 +6,7 @@ const special = document.querySelectorAll("spec");
 
 const dis = document.querySelector(".display");
 
-let flag = true;
+let flag = true, sizFlag = true;;
 for(let it of digits){
     it.addEventListener("mousedown", function(e){
         if(flag){
@@ -16,6 +16,10 @@ for(let it of digits){
         }
         else{
             dis.textContent += `${it.textContent}`
+        }
+        if(dis.textContent.length > 18){
+            dis.textContent = "Number is too big!"
+            flag = true;
         }
     });
 }
@@ -30,10 +34,28 @@ for(let it of operators){
         else{
             dis.textContent += `${it.textContent}`
         }
+        if(dis.textContent.length > 18){
+            dis.textContent = "Number is too big!"
+            flag = true;
+        }
     });
 }
 
 const eq = document.querySelector("#equals");
+
+const clearAll = document.querySelector("#clearAll");
+clearAll.addEventListener("mousedown", () =>{
+    dis.textContent = "00";
+    num1 = "";
+    num2 = "";
+    op = "";
+    flag = true;
+});
+
+const clear = document.querySelector("#clear");
+clear.addEventListener("mousedown", () => {
+    dis.textContent = dis.textContent.slice(0, -1);
+});
 
 
 eq.addEventListener("click", ()=>{
@@ -44,6 +66,7 @@ eq.addEventListener("click", ()=>{
     let curr = exp.charAt(0);
     if(isNaN(curr)){
         dis.textContent = "ERROR!";
+        flag = true;
     } 
     else{
         num1 = `${curr}`;
@@ -67,6 +90,7 @@ eq.addEventListener("click", ()=>{
 
         if(i < exp.length){
             dis.textContent = "ERROR!";
+            flag = true;
         } 
         else{
             let res;
